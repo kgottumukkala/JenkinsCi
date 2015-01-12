@@ -1,0 +1,50 @@
+﻿@using System.Web.Optimization;
+@model IEnumerable<Chipotle.Entity.Models.User>
+
+@{
+    ViewBag.Title = "index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>index</h2>
+ Users 
+<a href="@Url.Action( "Create", "User" )">Create User</a>
+<div id="content">
+    <table>
+        <thead>
+        <tr>
+            <th>User Id</th>
+            <th>Role Id</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email Id</th>
+            <th>Password</th>
+            <th>Active?</th>
+            <th>Logged In?</th>
+        </tr>
+         </thead><tbody data-bind="foreach: Users">
+        <tr>
+            <td data-bind="number: UserId"></td>
+            <td data-bind="number: RoleId"></td>
+             @*<td data-bind="text: FirstName"></td>
+            <td data-bind="text: LastName"></td>
+            <td data-bind="text: EmailId"></td>
+            <td data-bind="text: Password"></td>
+           <td data-bind="boolean: IsActive"></td>
+            <td data-bind="boolean: IsLoggedIn"></td>*@
+            <td>
+                <a data-bind="click: editUser" style="cursor:pointer">Edit</a>
+                <a data-bind="click: deleteUser" style="cursor:pointer">Delete</a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+   @section Scripts{
+      @Scripts.Render("~/Scripts/ViewModels/UserListVM.js")
+   } 
+        
+    
+    
+
+</div>

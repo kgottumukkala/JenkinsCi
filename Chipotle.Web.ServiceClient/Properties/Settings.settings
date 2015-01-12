@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Chipotle.Web.ServiceClient.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="BaseJsonServiceUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://chipotle/service/</Value>
+    </Setting>
+    <Setting Name="JsonRoleService" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">roleservice.svc/jsonservice/roles</Value>
+    </Setting>
+    <Setting Name="JsonUserService" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">userservice.svc/jsonservice/users</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<fieldset>
+    <legend>Create Role</legend>
+
+
+    <div class="editor-label">
+        Role
+    </div>
+    <input type="hidden"  data-bind="value: RoleId" />
+    <div class="editor-field">
+        <input data-bind="value: Title" />
+    </div>
+
+    <div class="editor-label">
+        Description
+    </div>
+    <div class="editor-field">
+        <textarea data-bind="value: Description"></textarea>
+    </div>
+
+    <div class="editor-label">
+        Enabled?
+    </div>
+    <div class="editor-field">
+        <input type="checkbox" class="insideshadowtl round" data-bind="checked: IsEnabled" />
+    </div>
+
+
+         <br />
+        <span class="form-button">
+         <a data-bind="click: SaveRole">Create</a>
+        </span>
+        <span class="form-button">
+         <a href="./">Cancel</a>
+        </span>
+   
+</fieldset><br />
+
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/ViewModels/CreateRoleVM.js")
+}
+
+

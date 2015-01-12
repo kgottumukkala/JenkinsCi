@@ -1,0 +1,94 @@
+﻿@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<fieldset>
+    <legend>Delete Role</legend>
+
+    <div class="editor-label">
+        RoleId
+    </div>
+    <div class="editor-field">
+        <input class="insideshadowtl round" data-bind="value: RoleId" readonly="readonly" />
+    </div>
+    <div class="editor-label">
+        Role
+    </div>
+    
+    <div class="editor-field">
+        <input class="insideshadowtl round" data-bind="value: Title" readonly="readonly" />
+    </div>
+
+    <div class="editor-label">
+        Description
+    </div>
+    <div class="editor-field">
+        <input class="insideshadowtl round" data-bind="value: Description" readonly="readonly" />
+    </div>
+
+    <div class="editor-label">
+        Enabled?
+    </div>
+    <div class="editor-field">
+        <input type="checkbox" class="insideshadowtl round" data-bind="checked: IsEnabled" readonly="readonly" />
+    </div>
+
+    <br />
+    <p>
+        <span class="form-button">
+        <a data-bind="click: deleteRole">Delete</a>
+        </span>
+        <span class="form-button">
+        <a href="../">Cancel</a>
+        </span>
+    </p>
+</fieldset>
+<div>
+    <a href="./admin/role" >Back to List</a>
+</div>
+
+@section Scripts {
+    <script>
+
+        $(function () {
+            ko.applyBindings(DeleteVM);
+        });
+
+        var initialData = '@Html.Raw(ViewBag.InitialData)'; //get the raw json
+        var parsedJSON = $.parseJSON(initialData); //parse the json client side
+        var DeleteVM = {
+
+            RoleId: ko.observable(parsedJSON.RoleId),
+            Title: ko.observable(parsedJSON.Title),
+            Description: ko.observable(parsedJSON.Description),
+            IsEnabled: ko.observable(parsedJSON.IsEnabled),
+            deleteRole: function () {
+                $.ajax({
+                    url: '/Role/Delete/' + parsedJSON.RoleId,
+                    type: 'post',
+                    dataType: 'json',
+                    
+                    contentType: 'application/json',
+                    success: function (result) {
+                    },
+                    error: function (err) {
+                        if (err.responseText == "Delete Failed")
+                        { window.location.href = './Role/Index/'; }
+                        else {
+                           
+                            window.location.href = '../../Role/';;
+                        }
+                    },
+                    complete: function () {
+                        //window.location.href = './Role/Index/';
+                    }
+                });
+            }
+        };
+
+    </script>
+    @*@Scripts.Render( "~/Scripts/ViewModels/EditRoleVM.js" )*@
+}

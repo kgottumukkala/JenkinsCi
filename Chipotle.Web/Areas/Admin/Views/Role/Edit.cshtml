@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<fieldset>
+    <legend>Edit Role</legend>
+
+    <div class="editor-label">
+        RoleId
+    </div>
+    <div class="editor-field">
+        <input data-bind="value: RoleId" readonly="readonly" />
+    </div>
+    <div class="editor-label">
+        Role
+    </div>
+    
+    <div class="editor-field">
+        <input data-bind="value: Title" />
+    </div>
+
+    <div class="editor-label">
+        Description
+    </div>
+    <div class="editor-field">
+        <textarea data-bind="value: Description"></textarea>
+    </div>
+
+    <div class="editor-label">
+        Enabled?
+    </div>
+    <div class="editor-field">
+        <input type="checkbox" data-bind="checked: IsEnabled" />
+    </div>
+
+    <br />
+    <p>
+        <span class="form-button">
+            <a data-bind="click: EditRole.saveRole">Update</a>
+        </span>
+        <span class="form-button">
+            <a href="../">Cancel</a>
+        </span>
+    </p>
+</fieldset>
+
+
+@section Scripts {
+    @*<script>
+       
+        $(function () {
+            ko.applyBindings(EditVM);
+        });
+
+        var initialData = '@Html.Raw(ViewBag.InitialData)'; //get the raw json
+         var parsedJSON = $.parseJSON(initialData); //parse the json client side
+         var EditVM = {
+             
+             RoleId: ko.observable(parsedJSON.RoleId),
+             Title: ko.observable(parsedJSON.Title),
+             Description: ko.observable(parsedJSON.Description),
+             IsEnabled: ko.observable(parsedJSON.IsEnabled),
+             saveRole: function () {
+                 $.ajax({
+                     url: '/Role/Edit',
+                     type: 'post',
+                     dataType: 'json',
+                     data: ko.toJSON(this),
+                     contentType: 'application/json',
+                     success: function (result) {
+                         window.location.href = '../../Role/';
+                     },
+                     error: function (err) {
+                         if (err.responseText == "Save Failed")
+                         { window.location.href = '../../Role/'; }
+                         else {
+                             
+                             window.location.href = '../../Role/';
+                         }
+                     },
+                    
+                 });
+             }
+         };
+
+    </script>*@
+    
+    @Scripts.Render( "~/Scripts/ViewModels/EditRoleVM.js" )
+}

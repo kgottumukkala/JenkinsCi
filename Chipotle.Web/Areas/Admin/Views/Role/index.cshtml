@@ -1,0 +1,72 @@
+﻿@using System.Web.Optimization;
+@model IEnumerable<Chipotle.Entity.Models.Role>
+
+@{
+	ViewBag.Title = "index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h3>Role Management</h3>
+ 
+<div id="content">
+	<div id="adminPanel">
+
+	</div>
+	
+	<div class="grid">
+		<div class="grid-toolbar">
+			<div class="toolbar">
+				<a href="@Url.Action( "Create", "Role" )">Create Role</a>
+				<a data-bind="click: editRole">Edit</a>
+				<a data-bind="click: deleteRole">Delete</a>
+			</div>
+		</div>
+		<div>
+		<table id="roleGrid">
+			<thead class="grid-header">
+			<tr>
+				<th><a>Role Id</a></th>
+				<th><a>Role</a></th>
+				<th><a>Description</a></th>
+				<th><a>Enabled?</a></th>
+				
+			</tr>
+			 </thead><tbody data-bind="foreach: Roles">
+			<tr data-bind="attr: {id: RoleId}, click: selectRow">
+				<td data-bind="text: RoleId"></td>
+				<td data-bind="text: Title"></td>
+				<td data-bind="text: Description"></td>
+				<td data-bind="text: IsEnabled"></td>
+				
+			</tr>
+			</tbody>
+		</table>
+			</div>
+		<div class="grid-footer">
+            <div id="pageSize">
+                Page Size:
+			           <select id="pagesize" data-bind="options: gridParams.pageSizeOptions, value: gridParams.selectedPageSize" ></select>
+            </div>          
+            <div id="pageNos">
+                Pages:<ul data-bind="foreach: new Array(gridParams.totalPages())" >
+                    <li><a href='#' data-bind="attr: { 'class': ($index() + 1) == RoleListVM.gridParams.pageNum() ? ' selectedPage' : '' }, click: function () { flipPage($index() + 1) }, text: ($index() + 1)"></a></li>
+                    
+                </ul>
+		    </div>
+            <div id="totalRecords">
+                Total no. of Record(s) : <span data-bind="text: gridParams.totalRows"></span>
+            </div>       
+		</div>
+	</div>
+   
+   @section Scripts{
+	   
+	   @Scripts.Render("~/Scripts/ViewModels/RoleListVM.js")
+		
+	
+   } 
+		
+	
+	
+
+</div>
